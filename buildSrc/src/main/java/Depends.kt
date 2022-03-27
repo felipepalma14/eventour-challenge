@@ -52,4 +52,57 @@ object Depends {
             return arrayOf(getDaggerCompiler(), getDaggerProcessor())
         }
     }
+
+    object ViewModel {
+        fun getLifecycleExtensionsVersion() =
+            "androidx.lifecycle:lifecycle-extensions:${Versions.lifecycleVersion}"
+
+        fun getLifecycleLiveDataKtxVersion() =
+            "androidx.lifecycle:lifecycle-livedata-kts:${Versions.lifecycleVersion}"
+
+        fun getLifecycleViewModelKtxVersion() =
+            "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycleVersion}"
+
+        fun setup(): Array<String> {
+            return arrayOf(
+                getLifecycleExtensionsVersion(),
+                getLifecycleLiveDataKtxVersion(),
+                getLifecycleViewModelKtxVersion()
+            )
+        }
+    }
+
+    object Retrofit {
+        fun getCoreVersion() =
+            "com.squareup.retrofit2:retrofit:${Versions.retrofitVersion}"
+
+        fun getRetrofitMoshiVersion() =
+            "com.squareup.moshi:moshi-kotlin:${Versions.moshiVersion}"
+
+        fun getRetrofitMoshiConverterVersion() =
+            "com.squareup.retrofit2:converter-moshi:${Versions.retrofitVersion}"
+
+        fun setup(): Array<String> {
+            return arrayOf(
+                getCoreVersion(),
+                getRetrofitMoshiConverterVersion(),
+                getRetrofitMoshiVersion()
+            )
+        }
+    }
+
+    object OkHttp3 {
+        fun getCoreVersion() =
+            "com.squareup.okhttp3:okhttp:${Versions.okHttp3Version}"
+
+        fun getInterceptorVersion() =
+            "com.squareup.okhttp3:logging-interceptor:${Versions.okHttp3Version}"
+
+        fun setup(): Array<String> {
+            return arrayOf(
+                getCoreVersion(),
+                getInterceptorVersion()
+            )
+        }
+    }
 }
