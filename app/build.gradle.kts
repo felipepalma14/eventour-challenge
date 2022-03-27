@@ -64,7 +64,7 @@ android {
 
 dependencies {
     // implementation(project(BuildModules.CORE))
-    Depends.Kotlin.setup(rootProject).forEach { implementation(it) }
+    Depends.Kotlin.setup().forEach { implementation(it) }
 
     Depends.AndroidUI.setup().forEach { implementation(it) }
 

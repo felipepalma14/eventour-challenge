@@ -1,3 +1,5 @@
+import plugins.Plugins
+
 buildscript {
 
     repositories {
@@ -20,4 +22,5 @@ allprojects {
         mavenCentral()
         maven("https://plugins.gradle.org/m2/")
     }
+    plugins.apply(Plugins.detekt)
 }
