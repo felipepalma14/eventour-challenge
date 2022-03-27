@@ -1,4 +1,13 @@
 object Depends {
+    object Features {
+        object Eventour {
+            val core = ":features"
+
+            fun getCoreModule() = arrayOf(core)
+
+            fun setup() = getCoreModule()
+        }
+    }
     object Kotlin {
         fun getKotlinStdlibVersion() =
             "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Versions.kotlinVersion}"

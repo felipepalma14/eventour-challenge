@@ -1,3 +1,6 @@
 include(
-    ":app"
+    ":app",
+    // eventour
+    ":features",
+    ":features:service"
 )
