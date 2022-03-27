@@ -1,3 +1,4 @@
+
 plugins {
     id("com.android.application")
     id("kotlin-android")
@@ -40,6 +41,12 @@ android {
         isExperimental = true
     }
 
+    packagingOptions {
+        exclude("META-INF/*.kotlin_module")
+        exclude("META-INF/AL2.0")
+        exclude("META-INF/LGPL2.1")
+    }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
@@ -63,24 +70,22 @@ android {
 }
 
 dependencies {
-    // implementation(project(BuildModules.CORE))
     Depends.Kotlin.setup().forEach { implementation(it) }
 
     Depends.AndroidUI.setup().forEach { implementation(it) }
-
 
     Depends.Dagger.setup().forEach { implementation(it) }
 
     Depends.Dagger.setupProcessor().forEach { kapt(it) }
 
+    Depends.ViewModel.setup().forEach { implementation(it) }
 
-//    implementation(Dependencies.TIMBER)
-//    implementation(Dependencies.LOGGING)
-//    implementation(Dependencies.DAGGER)
+    Depends.Retrofit.setup().forEach { implementation(it) }
 
-    //debugImplementation(DebugDependencies.LEAKCANARY)
+    Depends.OkHttp3.setup().forEach { implementation(it) }
 
-    // kapt(AnnotationProcessorsDependencies.DAGGER)
+    Depends.UnitTest.setup().forEach { testImplementation(it) }
 
-    // addTestsDependencies()
+    Depends.AndroidTest.setup().forEach { androidTestImplementation(it) }
+
 }

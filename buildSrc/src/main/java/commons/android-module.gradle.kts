@@ -71,4 +71,6 @@ dependencies {
     
     Depends.OkHttp3.setup().forEach { implementation(it) }
 
+    Depends.UnitTest.setup().forEach { testImplementation(it) }
+
 }
