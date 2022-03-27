@@ -1,5 +1,12 @@
 object Depends {
     object Features {
+        object Commons {
+            const val testingBase = ":testingBase"
+
+            fun getJavaModule() = arrayOf(testingBase)
+            fun setup() = getJavaModule()
+        }
+
         object Eventour {
             val core = ":features"
 
