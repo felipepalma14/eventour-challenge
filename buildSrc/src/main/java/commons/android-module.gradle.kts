@@ -1,6 +1,9 @@
+package commons
+
+import org.gradle.kotlin.dsl.kotlin
 
 plugins {
-    id("com.android.application")
+    id("com.android.library")
     id("kotlin-android")
     id("kotlin-android-extensions")
     kotlin("kapt")
@@ -11,40 +14,19 @@ android {
     defaultConfig {
         minSdkVersion(BuildAndroidConfig.MIN_SDK_VERSION)
         targetSdkVersion(BuildAndroidConfig.TARGET_SDK_VERSION)
-
-        versionCode = BuildAndroidConfig.VERSION_CODE
-        versionName = BuildAndroidConfig.VERSION_NAME
-
-        vectorDrawables.useSupportLibrary = BuildAndroidConfig.SUPPORT_LIBRARY_VECTOR_DRAWABLES
-        testInstrumentationRunner = BuildAndroidConfig.TEST_INSTRUMENTATION_RUNNER
     }
+
 
     buildTypes {
         getByName("release") {
             isMinifyEnabled = false
-            isDebuggable = false
+            consumerProguardFiles("proguard-rules.pro")
         }
 
         getByName("debug") {
-//            applicationIdSuffix = BuildTypeDebug.applicationIdSuffix
-//            versionNameSuffix = BuildTypeDebug.versionNameSuffix
             isMinifyEnabled = false
             isDebuggable = true
         }
-    }
-
-    buildFeatures{
-        dataBinding = true
-    }
-
-    androidExtensions {
-        isExperimental = true
-    }
-
-    packagingOptions {
-        exclude("META-INF/*.kotlin_module")
-        exclude("META-INF/AL2.0")
-        exclude("META-INF/LGPL2.1")
     }
 
     compileOptions {
@@ -53,7 +35,15 @@ android {
     }
 
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_1_8.toString()
+        jvmTarget = org.gradle.api.JavaVersion.VERSION_1_8.toString()
+    }
+
+    androidExtensions {
+        isExperimental = true
+    }
+
+    packagingOptions{
+        exclude("META-INF/*.kotlin-module")
     }
 
     sourceSets {
@@ -62,9 +52,6 @@ android {
         }
         getByName("test") {
             java.srcDir("src/test/java")
-        }
-        getByName("androidTest") {
-            java.srcDir("src/androidTest/java")
         }
     }
 }
@@ -81,11 +68,9 @@ dependencies {
     Depends.ViewModel.setup().forEach { implementation(it) }
 
     Depends.Retrofit.setup().forEach { implementation(it) }
-
+    
     Depends.OkHttp3.setup().forEach { implementation(it) }
 
     Depends.UnitTest.setup().forEach { testImplementation(it) }
-
-    Depends.AndroidTest.setup().forEach { androidTestImplementation(it) }
 
 }
