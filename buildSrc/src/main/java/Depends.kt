@@ -30,6 +30,61 @@ object Depends {
         }
     }
 
+    object AndroidTest {
+        fun getRunnerVersion() = "androidx.test:runner:${Versions.testRunnerVersion}"
+        fun getRulesVersion() = "androidx.test:rules:${Versions.testRulesVersion}"
+
+        fun setup(): Array<String> {
+            return arrayOf(
+                getRunnerVersion(),
+                getRulesVersion()
+            )
+        }
+    }
+
+    object UnitTest {
+        fun getCoreVersion() = "androidx.test:core:${Versions.unitTestCoreVersion}"
+        fun getJUnitVersion() = "junit:junit:${Versions.jUnitVersion}"
+        fun getViewModelTestVersion() = "androidx.arch.core:core-testing:${Versions.coreCommonsVersion}"
+        fun getRunnerVersion() = "androidx.test:runner:${Versions.testRunnerVersion}"
+        fun getTruthVersion() = "com.google.truth:truth:1.1.3"
+        fun getMockitoInlineVersion() = "org.mockito:mockito-inline:${Versions.mockitoVersion}"
+        fun getMockitoCoreVersion() = "org.mockito:mockito-core:${Versions.mockitoVersion}"
+        fun getCoreKTX() = "androidx.core:core-ktx:1.1.0"
+        fun getMockitoKotlinVersion() = "com.nhaarman.mockitokotlin2:mockito-kotlin:${Versions.mockitoKotlinVersion}"
+        fun getMockitoAndroidVersion() = "org.mockito:mockito-android:${Versions.mockitoAndroidVersion}"
+        fun getCoroutineTest() = "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.5.2"
+        fun getCoroutineDebugTest() = "org.jetbrains.kotlinx:kotlinx-coroutines-debug:1.5.2"
+
+        fun setupJavaModules() : Array<String> {
+            return arrayOf(
+                getJUnitVersion(),
+                getMockitoInlineVersion(),
+                getMockitoCoreVersion(),
+                getMockitoKotlinVersion(),
+                getCoreKTX(),
+                getCoroutineTest(),
+                getCoroutineDebugTest(),
+                getTruthVersion()
+            )
+        }
+
+        fun setup(): Array<String> {
+            return arrayOf(
+                getCoroutineTest(),
+                getCoreVersion(),
+                getJUnitVersion(),
+                getRunnerVersion(),
+                getViewModelTestVersion(),
+                getMockitoInlineVersion(),
+                getMockitoCoreVersion(),
+                getMockitoKotlinVersion(),
+                getMockitoAndroidVersion(),
+                getTruthVersion()
+            )
+        }
+    }
+
     object Dagger {
         fun getDaggerCore() = "com.google.dagger:dagger:${Versions.daggerVersion}"
         fun getDaggerAndroid() = "com.google.dagger:dagger-android:${Versions.daggerVersion}"
@@ -58,7 +113,7 @@ object Depends {
             "androidx.lifecycle:lifecycle-extensions:${Versions.lifecycleVersion}"
 
         fun getLifecycleLiveDataKtxVersion() =
-            "androidx.lifecycle:lifecycle-livedata-kts:${Versions.lifecycleVersion}"
+            "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.lifecycleVersion}"
 
         fun getLifecycleViewModelKtxVersion() =
             "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycleVersion}"
