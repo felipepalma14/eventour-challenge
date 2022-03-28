@@ -1,6 +1,7 @@
 include(
     ":app",
     // commons
+    ":commons",
     ":testingBase",
     // eventour
     ":features",

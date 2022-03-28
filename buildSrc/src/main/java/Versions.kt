@@ -5,6 +5,8 @@ object Versions {
 
     const val lifecycleVersion = "2.2.0"
 
+    const val navigationVersion = "2.3.5"
+
     const val retrofitVersion = "2.9.0"
     const val moshiVersion = "1.8.0"
     const val okHttp3Version = "3.14.9"

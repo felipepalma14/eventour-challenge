@@ -4,8 +4,10 @@
 
     <application>
         <activity
-            android:name="br.com.felipepalma14.eventour.features.events.home.presentation.EventourHomeActivity"
-            android:exported="false" />
+            android:name=".home.presentation.EventourHomeActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"/>
     </application>
 
 </manifest>

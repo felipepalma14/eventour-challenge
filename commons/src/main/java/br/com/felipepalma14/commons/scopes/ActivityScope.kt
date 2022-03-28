@@ -1,4 +1,4 @@
-package br.com.felipepalma14.eventour.features.events.home.di
+package br.com.felipepalma14.commons.scopes
 
 import javax.inject.Scope
 

@@ -61,6 +61,7 @@ android {
 }
 
 dependencies {
+
     Depends.Kotlin.setup().forEach { implementation(it) }
 
     Depends.AndroidUI.setup().forEach { implementation(it) }
