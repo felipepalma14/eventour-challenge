@@ -9,11 +9,22 @@ object Depends {
 
         object Eventour {
             val core = ":features"
+            val service = ":features:service"
+            val events = ":features:events"
 
+            fun getAndroidModules() = arrayOf(events, service)
             fun getCoreModule() = arrayOf(core)
 
-            fun setup() = getCoreModule()
+            fun setup() = getCoreModule() + getAndroidModules()
         }
+
+        fun setup() = getAndroidModules() + getJavaModules() + getCoreModules()
+
+        fun getCoreModules() = Eventour.getCoreModule()
+
+        fun getAndroidModules() = Eventour.getAndroidModules()
+
+        fun getJavaModules() = Commons.getJavaModule()
     }
     object Kotlin {
         fun getKotlinStdlibVersion() =

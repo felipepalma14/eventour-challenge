@@ -3,4 +3,5 @@ plugins {
 }
 
 dependencies {
+    Depends.Features.Eventour.getAndroidModules().forEach { implementation(project(it)) }
 }

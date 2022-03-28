@@ -4,5 +4,6 @@ include(
     ":testingBase",
     // eventour
     ":features",
-    ":features:service"
+    ":features:service",
+    ":features:events"
 )
