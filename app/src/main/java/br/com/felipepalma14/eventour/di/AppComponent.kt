@@ -1,6 +1,7 @@
 package br.com.felipepalma14.eventour.di
 
 import android.app.Application
+import br.com.felipepalma14.commons.base.ViewModelModule
 import br.com.felipepalma14.eventour.EventourApplication
 import br.com.felipepalma14.eventour.features.di.EventourModuleBuilder
 import dagger.BindsInstance
@@ -14,6 +15,7 @@ import javax.inject.Singleton
 @Component(
     modules = [
         AndroidSupportInjectionModule::class,
+        ViewModelModule::class,
         MainActivityModule::class,
         EventourModuleBuilder::class,
     ]

@@ -6,8 +6,5 @@ plugins {
 dependencies {
     Depends.Features.Commons.setup().forEach { implementation(project(it)) }
     implementation(project(Depends.Features.Eventour.service))
-    implementation("androidx.appcompat:appcompat:1.4.1")
-    implementation("com.google.android.material:material:1.5.0")
-    implementation("androidx.constraintlayout:constraintlayout:2.1.3")
-    implementation("androidx.legacy:legacy-support-v4:1.0.0")
+    implementation(Depends.UI.getShimmerVersion())
 }

@@ -1,12 +1,42 @@
 package br.com.felipepalma14.eventour.features.events.home.presentation
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import br.com.felipepalma14.commons.base.BaseViewModel
+import br.com.felipepalma14.commons.extensions.runOn
+import br.com.felipepalma14.commons.state.ScreenState
+import br.com.felipepalma14.eventour.features.events.domain.model.EventData
+import br.com.felipepalma14.eventour.features.events.home.domain.IEventListInteractor
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+sealed class EventListViewModelState {
+    data class OnGetEventList(val vo: List<EventData>) : EventListViewModelState()
+    object OnError: EventListViewModelState()
+    object OnLoading: EventListViewModelState()
+}
 class EventListViewModel @Inject constructor(
+    private val interactor: IEventListInteractor,
+) : BaseViewModel() {
+    val state = MutableLiveData<EventListViewModelState>()
 
-) : ViewModel() {
+    override fun onCreate() {
+        viewModelScope.launch {
+            state.value = EventListViewModelState.OnLoading
+            runOn(Dispatchers.IO) {
+                interactor.getEventListData()
+            }.onSuccess { eventList ->
+                if(eventList.isNotEmpty()) {
+                    state.value = EventListViewModelState.OnGetEventList(eventList)
+                    Log.d("TESTE", "onCreate: $eventList")
+                }
 
-    val empty = MutableLiveData(false)
+            }.onFailure { exception ->
+                Log.d("TESTE", "onCreate: $exception")
+            }
+        }
+    }
 }

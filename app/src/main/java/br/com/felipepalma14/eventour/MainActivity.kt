@@ -11,5 +11,6 @@ class MainActivity : DaggerAppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         startActivity(Intent(this,EventourHomeActivity::class.java))
+        finish()
     }
 }

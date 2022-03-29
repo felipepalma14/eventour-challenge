@@ -27,10 +27,6 @@ class EventListFragment : BaseFragment<FragmentEventListBinding, EventListViewMo
         setSwipeRefresh()
         setObservers()
 
-        adapter = EventListAdapter(EventListAdapter.OnClickListener {
-            val bundle = bundleOf("event" to it)
-            // view.findNavController().navigate(R.id.to_details, bundle)
-        })
         viewBinding.recyclerView.adapter = adapter
 
         subscribeUi(viewBinding)
