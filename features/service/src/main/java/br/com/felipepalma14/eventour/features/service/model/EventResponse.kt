@@ -1,7 +1,6 @@
 package br.com.felipepalma14.eventour.features.service.model
 
-
-data class EventResponse(
+class EventResponse(
     val id: Long,
     val title: String,
     val description: String,

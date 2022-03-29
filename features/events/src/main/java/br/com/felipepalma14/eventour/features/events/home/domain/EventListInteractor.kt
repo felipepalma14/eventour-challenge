@@ -19,6 +19,12 @@ class EventListInteractor @Inject constructor(
 }
 
 fun EventResponse.toEventData() = EventData(
-    id, title, description, date, image,
-    latitude, longitude, price
+    id = this.id,
+    title = this.title,
+    description = this.description,
+    date = this.date,
+    image = this.image,
+    latitude = this.latitude,
+    longitude = this.longitude,
+    price = this.price
 )

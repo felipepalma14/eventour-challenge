@@ -49,7 +49,10 @@ class EventourHomeActivity : BaseMvvmActivity() {
                     binding.listPlaceholder.visibility = View.GONE
                 }
                 is EventListViewModelState.OnLoading -> {
-
+                    binding.listPlaceholder.visibility = View.VISIBLE
+                }
+                is EventListViewModelState.OnGetEventEmptyList, EventListViewModelState.OnError -> {
+                    binding.empty.visibility = View.VISIBLE
                 }
             }
         }

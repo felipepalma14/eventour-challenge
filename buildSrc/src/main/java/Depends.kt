@@ -91,6 +91,7 @@ object Depends {
         fun getMockitoAndroidVersion() = "org.mockito:mockito-android:${Versions.mockitoAndroidVersion}"
         fun getCoroutineTest() = "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.5.2"
         fun getCoroutineDebugTest() = "org.jetbrains.kotlinx:kotlinx-coroutines-debug:1.5.2"
+        fun getMockkVersion() = "io.mockk:mockk:1.9.1"
 
         fun setupJavaModules() : Array<String> {
             return arrayOf(
@@ -101,7 +102,8 @@ object Depends {
                 getCoreKTX(),
                 getCoroutineTest(),
                 getCoroutineDebugTest(),
-                getTruthVersion()
+                getTruthVersion(),
+                getMockkVersion()
             )
         }
 
@@ -116,7 +118,8 @@ object Depends {
                 getMockitoCoreVersion(),
                 getMockitoKotlinVersion(),
                 getMockitoAndroidVersion(),
-                getTruthVersion()
+                getTruthVersion(),
+                getMockkVersion()
             )
         }
     }

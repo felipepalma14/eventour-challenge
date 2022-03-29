@@ -1,12 +1,12 @@
 package br.com.felipepalma14.eventour.features.events.domain.model
 
-data class EventData(
+class EventData(
     val id: Long,
     val title: String,
     val description: String,
-    val date: Long = 0L,
+    val date: Long,
     val image: String,
     val latitude: Double,
     val longitude: Double,
-    val price: Double = 0.0,
+    val price: Double,
 )
