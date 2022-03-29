@@ -3,6 +3,7 @@ package br.com.felipepalma14.eventour.features.events.home.presentation
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.databinding.DataBindingUtil
 import br.com.felipepalma14.commons.base.BaseMvvmActivity
 import br.com.felipepalma14.eventour.features.events.R
@@ -24,6 +25,7 @@ class EventourHomeActivity : BaseMvvmActivity() {
 
         setupListener()
         bindToolbarView()
+        setSwipeRefresh()
         bindRecyclerView()
     }
 
@@ -40,15 +42,21 @@ class EventourHomeActivity : BaseMvvmActivity() {
 
     }
 
+    private fun setSwipeRefresh() {
+        binding.swipe.setOnRefreshListener { vm.onCreate() }
+    }
+
     private fun setupListener() {
         vm.state.observe(this) { state ->
             when (state) {
                 is EventListViewModelState.OnGetEventList -> {
-                    adapter.submitList(state.vo)
                     binding.recyclerView.visibility = View.VISIBLE
                     binding.listPlaceholder.visibility = View.GONE
+                    binding.swipe.isRefreshing = false
+                    adapter.submitList(state.vo)
                 }
                 is EventListViewModelState.OnLoading -> {
+                    binding.recyclerView.visibility = View.GONE
                     binding.listPlaceholder.visibility = View.VISIBLE
                 }
                 is EventListViewModelState.OnGetEventEmptyList, EventListViewModelState.OnError -> {

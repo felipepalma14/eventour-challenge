@@ -29,12 +29,11 @@ class EventListViewModel @Inject constructor(
             runOn(Dispatchers.IO) {
                 interactor.getEventListData()
             }.onSuccess { eventList ->
-                state.value = EventListViewModelState.OnGetEventEmptyList
-//                if (eventList.isNotEmpty()) {
-//                    state.value = EventListViewModelState.OnGetEventList(eventList)
-//                } else {
-//                    state.value = EventListViewModelState.OnGetEventEmptyList
-//                }
+                if (eventList.isNotEmpty()) {
+                    state.value = EventListViewModelState.OnGetEventList(eventList)
+                } else {
+                    state.value = EventListViewModelState.OnGetEventEmptyList
+                }
 
             }.onFailure { exception ->
                 Log.d("onFailure", "onCreate: $exception")
