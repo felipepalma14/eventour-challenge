@@ -6,10 +6,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import br.com.felipepalma14.commons.base.BaseViewModel
 import br.com.felipepalma14.commons.extensions.runOn
-import br.com.felipepalma14.eventour.features.events.details.domain.EventDataParams
+import br.com.felipepalma14.eventour.features.events.details.domain.model.EventDataParams
 import br.com.felipepalma14.eventour.features.events.details.domain.IEventDetailsInteractor
 import br.com.felipepalma14.eventour.features.events.domain.model.EventData
-import br.com.felipepalma14.eventour.features.events.home.presentation.EventListAction
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject

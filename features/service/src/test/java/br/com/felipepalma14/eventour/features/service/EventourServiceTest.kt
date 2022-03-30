@@ -38,21 +38,23 @@ class EventourServiceTest {
 
     @Test
     fun getEventList() {
+        // given
         val response = Response.success(
             listOf(
                 EventResponse(
                     10L, "title", "description", 29292929292, "image",
-                    10000L, 10000L, 1000.0
+                    10000.0, 10000.0, 1000.0
                 )
             )
         )
-
+        // when
         runBlocking {
             Mockito.`when`(api.getEventList()).thenReturn(response)
 
             val eventListData = service.getEventList()
 
             Mockito.verify(api).getEventList()
+            // then
             assert(eventListData == response responseBy service.eventourMapper)
         }
     }
@@ -62,7 +64,7 @@ class EventourServiceTest {
         val response = Response.success(
             EventResponse(
                 10L, "title", "description", 29292929292, "image",
-                10000L, 10000L, 1000.0
+                10000.0, 10000.0, 1000.0
             )
         )
 

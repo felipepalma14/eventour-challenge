@@ -1,6 +1,7 @@
 package br.com.felipepalma14.eventour.features.events.details.domain
 
 import br.com.felipepalma14.eventour.features.events.details.data.IEventDetailsRepository
+import br.com.felipepalma14.eventour.features.events.details.domain.model.EventDataParams
 import br.com.felipepalma14.eventour.features.events.domain.mapper.toEventData
 import br.com.felipepalma14.eventour.features.events.domain.model.EventData
 import javax.inject.Inject

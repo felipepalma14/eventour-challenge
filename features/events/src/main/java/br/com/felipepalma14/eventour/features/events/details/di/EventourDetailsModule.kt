@@ -5,7 +5,7 @@ import br.com.felipepalma14.commons.base.ViewModelKey
 import br.com.felipepalma14.commons.scopes.ActivityScope
 import br.com.felipepalma14.eventour.features.events.details.data.EventDetailsRepository
 import br.com.felipepalma14.eventour.features.events.details.data.IEventDetailsRepository
-import br.com.felipepalma14.eventour.features.events.details.domain.EventDataParams
+import br.com.felipepalma14.eventour.features.events.details.domain.model.EventDataParams
 import br.com.felipepalma14.eventour.features.events.details.domain.EventDetailsInteractor
 import br.com.felipepalma14.eventour.features.events.details.domain.IEventDetailsInteractor
 import br.com.felipepalma14.eventour.features.events.details.presentation.EventDetailsActivity

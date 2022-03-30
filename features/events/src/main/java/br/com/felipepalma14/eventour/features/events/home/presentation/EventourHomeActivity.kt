@@ -47,6 +47,8 @@ class EventourHomeActivity : BaseMvvmActivity() {
     }
 
     private fun setupListener() {
+        binding.empty.setOnClickListener { vm.onCreate() }
+
         vm.state.observe(this) { state ->
             when (state) {
                 is EventListViewModelState.OnGetEventList -> {
@@ -56,11 +58,13 @@ class EventourHomeActivity : BaseMvvmActivity() {
                     adapter.submitList(state.vo)
                 }
                 is EventListViewModelState.OnLoading -> {
+                    binding.empty.visibility = View.GONE
                     binding.recyclerView.visibility = View.GONE
                     binding.listPlaceholder.visibility = View.VISIBLE
                 }
                 is EventListViewModelState.OnGetEventEmptyList, EventListViewModelState.OnError -> {
                     binding.empty.visibility = View.VISIBLE
+                    binding.listPlaceholder.visibility = View.GONE
                 }
             }
         }

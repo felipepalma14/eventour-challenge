@@ -31,6 +31,9 @@ class EventListViewModelTest {
     @Mock
     private lateinit var state: Observer<EventListViewModelState>
 
+    @Mock
+    private lateinit var action: Observer<EventListAction>
+
     private lateinit var vm: EventListViewModel
 
     @Before
@@ -40,6 +43,7 @@ class EventListViewModelTest {
         )
 
         vm.state.observeForever(state)
+        vm.action.observeForever(action)
     }
 
     @Test
@@ -77,5 +81,14 @@ class EventListViewModelTest {
             Mockito.verify(state).onChanged(EventListViewModelState.OnLoading)
             Mockito.verify(state).onChanged(EventListViewModelState.OnError)
         }
+    }
+
+    @Test
+    fun `WHEN user clicks in event item SHOULD send OnEventItemClick action`(){
+        // when
+        vm.onEventClickItem(1L)
+
+        //then
+        Mockito.verify(action).onChanged(EventListAction.OnEventItemClick(1L))
     }
 }
