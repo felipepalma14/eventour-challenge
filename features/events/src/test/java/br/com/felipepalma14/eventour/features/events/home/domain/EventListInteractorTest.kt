@@ -13,11 +13,13 @@ import io.mockk.impl.annotations.MockK
 import io.mockk.mockk
 import io.mockk.mockkStatic
 import io.mockk.unmockkAll
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 
+@ExperimentalCoroutinesApi
 class EventListInteractorTest {
     @get:Rule
     val testCoroutineRule = TestCoroutineRule()
@@ -30,7 +32,7 @@ class EventListInteractorTest {
     @Before
     fun setup() {
         MockKAnnotations.init(this)
-        mockkStatic("br.com.felipepalma14.eventour.features.events.home.domain.EventListInteractorKt")
+        mockkStatic("br.com.felipepalma14.eventour.features.events.domain.mapper.MapperKt")
         interactor = EventListInteractor(repository)
     }
 
@@ -43,9 +45,7 @@ class EventListInteractorTest {
     fun `should getEventListData`() = testCoroutineRule.runBlockingTest {
         val itemData = mockk<EventData>()
         val itemResponse = mockk<EventResponse>()
-
         every { itemResponse.toEventData() } returns itemData
-
         coEvery { repository.getEventList() } returns listOf(itemResponse)
 
         val result = interactor.getEventListData()
