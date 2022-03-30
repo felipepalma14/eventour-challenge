@@ -18,7 +18,7 @@ interface EventourAPIService {
     @GET(GET_EVENT_LIST)
     suspend fun getEventList(): Response<List<EventResponse>>
 
-    @GET(GET_EVENT_LIST)
-    suspend fun getEventDetail(@Path("id") id : Long): Response<EventResponse>
+    @GET(GET_EVENT_DETAIL)
+    suspend fun getEventDetail(@Path("id") id : Long?): Response<EventResponse>
 
 }

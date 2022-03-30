@@ -12,7 +12,7 @@ interface IEventourService {
     get() = EventourMapper()
 
     suspend fun getEventList(): List<EventResponse>
-    suspend fun getEventDetail(id: Long): EventResponse
+    suspend fun getEventDetail(id: Long?): EventResponse
 }
 class EventourService(
     logLevel: EventourLogLevel,
@@ -21,7 +21,7 @@ class EventourService(
     override suspend fun getEventList() =
         api.getEventList() responseBy eventourMapper
 
-    override suspend fun getEventDetail(id: Long) =
+    override suspend fun getEventDetail(id: Long?) =
         api.getEventDetail(id) responseBy eventourMapper
 
 }

@@ -70,7 +70,9 @@ android {
 }
 
 dependencies {
-    Depends.Features.Eventour.setup().forEach { implementation(project(it)) }
+    implementation(project(Depends.Features.Commons.commons))
+
+    Depends.Features.setup().forEach { implementation(project(it)) }
 
     Depends.Kotlin.setup().forEach { implementation(it) }
 

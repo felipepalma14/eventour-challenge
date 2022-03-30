@@ -1,14 +1,13 @@
 package br.com.felipepalma14.eventour.features.service.model
 
-
-data class EventResponse(
+class EventResponse(
     val id: Long,
     val title: String,
     val description: String,
     val date: Long,
     val image: String,
-    val latitude: Long,
-    val longitude: Long,
+    val latitude: Double,
+    val longitude: Double,
     val price: Double
 
 )
