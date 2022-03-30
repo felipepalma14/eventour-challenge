@@ -70,6 +70,10 @@ android {
 }
 
 dependencies {
+    implementation(project(Depends.Features.Commons.commons))
+
+    Depends.Features.setup().forEach { implementation(project(it)) }
+
     Depends.Kotlin.setup().forEach { implementation(it) }
 
     Depends.AndroidUI.setup().forEach { implementation(it) }
