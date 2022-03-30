@@ -1,4 +1,33 @@
 object Depends {
+    object Features {
+        object Commons {
+            const val testingBase = ":testingBase"
+            const val commons = ":commons"
+
+            fun getJavaModule() = arrayOf(testingBase)
+            fun getAndroidModules() = arrayOf(commons)
+            fun setup() = getJavaModule() + getAndroidModules()
+        }
+
+        object Eventour {
+            val core = ":features"
+            val service = ":features:service"
+            val events = ":features:events"
+
+            fun getAndroidModules() = arrayOf(events, service)
+            fun getCoreModule() = arrayOf(core)
+
+            fun setup() = getCoreModule() + getAndroidModules()
+        }
+
+        fun setup() = getAndroidModules() + getJavaModules() + getCoreModules()
+
+        fun getCoreModules() = Eventour.getCoreModule()
+
+        fun getAndroidModules() = Eventour.getAndroidModules()
+
+        fun getJavaModules() = Commons.getJavaModule()
+    }
     object Kotlin {
         fun getKotlinStdlibVersion() =
             "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Versions.kotlinVersion}"
@@ -14,18 +43,25 @@ object Depends {
 
     }
 
+    object UI {
+        fun getShimmerVersion() = "com.facebook.shimmer:shimmer:0.5.0"
+        fun getGlide() = "com.github.bumptech.glide:glide:4.11.0"
+    }
+
     object AndroidUI {
         fun getConstraintLayoutVersion() = "androidx.constraintlayout:constraintlayout:2.1.3"
         fun getAppCompat() = "androidx.appcompat:appcompat:1.1.0"
         fun getMaterialDesign() = "com.google.android.material:material:1.4.0"
         fun getCoreKTX() = "androidx.core:core-ktx:1.1.0"
+        fun getSupportV4() = "androidx.legacy:legacy-support-v4:1.0.0"
 
         fun setup(): Array<String> {
             return arrayOf(
                 getAppCompat(),
                 getConstraintLayoutVersion(),
                 getMaterialDesign(),
-                getCoreKTX()
+                getCoreKTX(),
+                getSupportV4()
             )
         }
     }
@@ -55,6 +91,7 @@ object Depends {
         fun getMockitoAndroidVersion() = "org.mockito:mockito-android:${Versions.mockitoAndroidVersion}"
         fun getCoroutineTest() = "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.5.2"
         fun getCoroutineDebugTest() = "org.jetbrains.kotlinx:kotlinx-coroutines-debug:1.5.2"
+        fun getMockkVersion() = "io.mockk:mockk:1.9.1"
 
         fun setupJavaModules() : Array<String> {
             return arrayOf(
@@ -65,7 +102,8 @@ object Depends {
                 getCoreKTX(),
                 getCoroutineTest(),
                 getCoroutineDebugTest(),
-                getTruthVersion()
+                getTruthVersion(),
+                getMockkVersion()
             )
         }
 
@@ -80,7 +118,8 @@ object Depends {
                 getMockitoCoreVersion(),
                 getMockitoKotlinVersion(),
                 getMockitoAndroidVersion(),
-                getTruthVersion()
+                getTruthVersion(),
+                getMockkVersion()
             )
         }
     }

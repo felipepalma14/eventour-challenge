@@ -34,6 +34,10 @@ android {
         targetCompatibility = JavaVersion.VERSION_1_8
     }
 
+    buildFeatures{
+        dataBinding = true
+    }
+
     kotlinOptions {
         jvmTarget = org.gradle.api.JavaVersion.VERSION_1_8.toString()
     }
@@ -57,6 +61,7 @@ android {
 }
 
 dependencies {
+
     Depends.Kotlin.setup().forEach { implementation(it) }
 
     Depends.AndroidUI.setup().forEach { implementation(it) }
