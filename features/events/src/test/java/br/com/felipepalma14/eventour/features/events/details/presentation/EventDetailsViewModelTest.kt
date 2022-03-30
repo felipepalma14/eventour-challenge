@@ -35,6 +35,9 @@ class EventDetailsViewModelTest {
     @Mock
     private lateinit var action: Observer<EventDetailsAction>
 
+    @Mock
+    private lateinit var event: Observer<EventData>
+
     private lateinit var vm: EventDetailsViewModel
 
     private val params = EventDataParams(eventId = 1L)
@@ -48,6 +51,7 @@ class EventDetailsViewModelTest {
 
         vm.state.observeForever(state)
         vm.action.observeForever(action)
+        vm.event.observeForever(event)
     }
 
     @Test
@@ -59,7 +63,7 @@ class EventDetailsViewModelTest {
             vm.onCreate()
 
             Mockito.verify(state).onChanged(EventDetailsViewModelState.OnLoading)
-            Mockito.verify(state).onChanged(EventDetailsViewModelState.OnGetEventDetails(data))
+            Mockito.verify(event).onChanged(data)
         }
     }
 
@@ -78,7 +82,22 @@ class EventDetailsViewModelTest {
     @Test
     fun `WHEN user clicks event location SHOULD send OnEventLocationClick action`() {
         // given
-        val data = mockk<EventData>()
+        val data = EventData(
+            id = 1L,
+            title = "title",
+            description = "description",
+            date = 1L,
+            image = "image",
+            latitude = 1.0,
+            longitude = 1.0,
+            price = 1.0,
+        )
+        runBlocking {
+            Mockito.`when`(interactor.getEventDetailsData(params)).thenReturn(data)
+            vm.onCreate()
+
+            Mockito.verify(state).onChanged(EventDetailsViewModelState.OnLoading)
+            Mockito.verify(event).onChanged(data) }
 
         // when
         vm.onEventLocation()

@@ -31,7 +31,7 @@ class EventListViewModel @Inject constructor(
     override fun onCreate() {
         viewModelScope.launch {
             state.value = EventListViewModelState.OnLoading
-            runOn(Dispatchers.IO) {
+            runOn(Dispatchers.Main) {
                 interactor.getEventListData()
             }.onSuccess { eventList ->
                 if (eventList.isNotEmpty()) {

@@ -16,7 +16,6 @@ import javax.inject.Inject
 sealed class EventDetailsViewModelState {
     object OnError : EventDetailsViewModelState()
     object OnLoading : EventDetailsViewModelState()
-    data class OnGetEventDetails(val eventData: EventData) : EventDetailsViewModelState()
 }
 
 sealed class EventDetailsAction {
@@ -36,10 +35,9 @@ class EventDetailsViewModel @Inject constructor(
     override fun onCreate() {
         viewModelScope.launch {
             state.value = EventDetailsViewModelState.OnLoading
-            runOn(Dispatchers.IO) {
+            runOn(Dispatchers.Main) {
                 interactor.getEventDetailsData(eventDataParams)
             }.onSuccess { eventData ->
-                state.value = EventDetailsViewModelState.OnGetEventDetails(eventData)
                 _event.value = eventData
 
             }.onFailure { exception ->
