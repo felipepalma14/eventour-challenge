@@ -18,10 +18,15 @@ sealed class EventListViewModelState {
     object OnLoading : EventListViewModelState()
 }
 
+sealed class EventListAction {
+    data class OnEventItemClick(val id: Long) : EventListAction()
+}
+
 class EventListViewModel @Inject constructor(
     private val interactor: IEventListInteractor,
 ) : BaseViewModel() {
     val state = MutableLiveData<EventListViewModelState>()
+    val action = MutableLiveData<EventListAction>()
 
     override fun onCreate() {
         viewModelScope.launch {
@@ -40,5 +45,9 @@ class EventListViewModel @Inject constructor(
                 state.value = EventListViewModelState.OnError
             }
         }
+    }
+
+    fun onEventClickItem(id: Long) {
+        action.value = EventListAction.OnEventItemClick(id)
     }
 }

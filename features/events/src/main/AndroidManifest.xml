@@ -4,10 +4,15 @@
 
     <application>
         <activity
-            android:name=".home.presentation.EventourHomeActivity"
+            android:name=".details.presentation.EventDetailsActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"/>
+        <activity
+            android:name=".home.presentation.EventourHomeActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>

@@ -6,6 +6,7 @@ import br.com.felipepalma14.eventour.features.events.domain.model.EventData
 import br.com.felipepalma14.eventour.features.events.home.domain.IEventListInteractor
 import br.com.felipepalma14.testingbase.TestCoroutineRule
 import io.mockk.mockk
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Rule
@@ -15,6 +16,7 @@ import org.mockito.Mock
 import org.mockito.Mockito
 import org.mockito.junit.MockitoJUnitRunner
 
+@ExperimentalCoroutinesApi
 @RunWith(MockitoJUnitRunner::class)
 class EventListViewModelTest {
     @get:Rule
@@ -32,7 +34,7 @@ class EventListViewModelTest {
     private lateinit var vm: EventListViewModel
 
     @Before
-    fun setup(){
+    fun setup() {
         vm = EventListViewModel(
             interactor
         )
@@ -41,7 +43,7 @@ class EventListViewModelTest {
     }
 
     @Test
-    fun `WHEN onCreate is called get event list`(){
+    fun `WHEN onCreate is called get event list`() {
         // given
         val data = mockk<EventData>()
         runBlocking {
@@ -54,7 +56,7 @@ class EventListViewModelTest {
     }
 
     @Test
-    fun `WHEN onCreate is called get empty event list`(){
+    fun `WHEN onCreate is called get empty event list`() {
         // given
         runBlocking {
             Mockito.`when`(interactor.getEventListData()).thenReturn(listOf())
@@ -66,7 +68,7 @@ class EventListViewModelTest {
     }
 
     @Test(expected = Throwable::class)
-    fun `WHEN onCreate is called get error event list`(){
+    fun `WHEN onCreate is called get error event list`() {
         // given
         runBlocking {
             Mockito.`when`(interactor.getEventListData()).thenThrow(Throwable())

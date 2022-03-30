@@ -2,12 +2,11 @@ package br.com.felipepalma14.eventour.features.events.home.presentation
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.databinding.DataBindingUtil
 import br.com.felipepalma14.commons.base.BaseMvvmActivity
 import br.com.felipepalma14.eventour.features.events.R
 import br.com.felipepalma14.eventour.features.events.databinding.ActivityEventourHomeBinding
+import br.com.felipepalma14.eventour.features.events.details.presentation.EventDetailsActivity
 import br.com.felipepalma14.eventour.features.events.home.presentation.adapter.EventListAdapter
 
 class EventourHomeActivity : BaseMvvmActivity() {
@@ -30,13 +29,14 @@ class EventourHomeActivity : BaseMvvmActivity() {
     }
 
     private fun bindToolbarView() {
-        binding.toolbar.title = "Eventos disponíveis"
+        binding.toolbar.title = getString(R.string.home_toolbar_title)
 
     }
 
     private fun bindRecyclerView() {
-        adapter = EventListAdapter {
-            Toast.makeText(this, "${it.title}", Toast.LENGTH_LONG).show()
+        adapter = EventListAdapter { event ->
+            vm.onEventClickItem(event.id)
+
         }
         binding.recyclerView.adapter = adapter
 
@@ -61,6 +61,14 @@ class EventourHomeActivity : BaseMvvmActivity() {
                 }
                 is EventListViewModelState.OnGetEventEmptyList, EventListViewModelState.OnError -> {
                     binding.empty.visibility = View.VISIBLE
+                }
+            }
+        }
+
+        vm.action.observe(this) { action ->
+            when (action) {
+                is EventListAction.OnEventItemClick -> {
+                    startActivity(EventDetailsActivity.newInstance(this, action.id))
                 }
             }
         }

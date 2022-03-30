@@ -1,4 +1,6 @@
 <resources>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="home_toolbar_title">Eventos disponíveis</string>
+    <string name="details_toolbar_title">Detalhes do evento</string>
 </resources>

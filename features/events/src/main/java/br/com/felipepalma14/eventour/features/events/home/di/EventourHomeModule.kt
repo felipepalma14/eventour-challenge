@@ -7,7 +7,6 @@ import br.com.felipepalma14.eventour.features.events.home.data.EventListReposito
 import br.com.felipepalma14.eventour.features.events.home.data.IEventListRepository
 import br.com.felipepalma14.eventour.features.events.home.domain.EventListInteractor
 import br.com.felipepalma14.eventour.features.events.home.domain.IEventListInteractor
-import br.com.felipepalma14.eventour.features.events.home.presentation.EventListFragment
 import br.com.felipepalma14.eventour.features.events.home.presentation.EventListViewModel
 import br.com.felipepalma14.eventour.features.events.home.presentation.EventourHomeActivity
 import dagger.Binds
